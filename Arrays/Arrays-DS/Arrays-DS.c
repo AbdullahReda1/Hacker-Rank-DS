@@ -56,8 +56,6 @@ int* reverseArray(int a_count, int* a, int* result_count) {
 
 int main()
 {
-    FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
-
     int arr_count = parse_int(ltrim(rtrim(readline())));
 
     char** arr_temp = split_string(rtrim(readline()));
@@ -74,16 +72,14 @@ int main()
     int* res = reverseArray(arr_count, arr, &res_count);
 
     for (int i = 0; i < res_count; i++) {
-        fprintf(fptr, "%d", *(res + i));
+        printf("%d", *(res + i));
 
         if (i != res_count - 1) {
-            fprintf(fptr, " ");
+            printf(" ");
         }
     }
 
-    fprintf(fptr, "\n");
-
-    fclose(fptr);
+    printf("\n");
 
     return 0;
 }
