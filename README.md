@@ -1,6 +1,6 @@
-# Hacker Ran DS
+# Hacker Rank DS
 
-| <br />SupDomain |    Task    |
+|    **SupDomain**    |    **Task**    |
 | :-------------: | :---------: |
 |     Arrays     | Arrays - DS |
 |  Linked Lists  |            |
