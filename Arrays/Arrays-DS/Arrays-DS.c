@@ -50,8 +50,19 @@ int parse_int(char*);
  * }
  *
  */
+#define B   (a_count - i - 1)       //  Back of array.
+
 int* reverseArray(int a_count, int* a, int* result_count) {
+    *result_count = a_count;
     
+    int temp   = 0;
+    for (int i = 0; i < (a_count / 2); i++) {
+        temp = a[i];
+        a[i] = a[B];
+        a[B] = temp;
+    }
+    
+    return a;
 }
 
 int main()
