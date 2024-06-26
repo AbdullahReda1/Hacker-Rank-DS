@@ -23,18 +23,31 @@ int parse_int(char*);
  * The function accepts 2D_INTEGER_ARRAY arr as parameter.
  */
 int hourglassSum(int arr_rows, int arr_columns, int** arr) {
-    int sum, comp = 0;
-    for (int i = 1 ; i < (arr_rows - 1); i++) {
+    int sum;                      // Variable to store the sum of the current hourglass
+    int max_sum = INT32_MIN;      // Initialize comp to the smallest possible integer value
+
+    // Loop through each element in the 2D array that can be the center of an hourglass
+    for (int i = 1; i < (arr_rows - 1); i++) {
         for (int j = 1; j < (arr_columns - 1); j++) {
-            sum = 0;
-            sum = arr[i][j] + arr[i+1][j+1] + arr[i-1][j-1] + arr[i-1][j] +
-                  arr[i+1][j] + arr[i+1][j-1] + arr[i-1][j+1];
-            if (sum > comp) {
-                comp = sum;
+            sum = 0; // Reset sum for the new hourglass
+            
+            // Calculate the sum of the current hourglass
+            sum =   arr[i][j]      // Center of the hourglass
+                  + arr[i+1][j+1]  // Bottom right of the hourglass
+                  + arr[i-1][j-1]  // Top left of the hourglass
+                  + arr[i-1][j]    // Top center of the hourglass
+                  + arr[i+1][j]    // Bottom center of the hourglass
+                  + arr[i+1][j-1]  // Bottom left of the hourglass
+                  + arr[i-1][j+1]; // Top right of the hourglass
+            
+            // Update comp if the current hourglass sum is greater than the previous maximum
+            if (sum > max_sum) {
+              max_sum = sum;
             }
         }
     }
-    return comp;
+
+    return max_sum; // Return the maximum hourglass sum
 }
 
 int main()
