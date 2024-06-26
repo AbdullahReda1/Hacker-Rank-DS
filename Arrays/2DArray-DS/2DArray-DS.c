@@ -22,9 +22,19 @@ int parse_int(char*);
  * The function is expected to return an INTEGER.
  * The function accepts 2D_INTEGER_ARRAY arr as parameter.
  */
-
 int hourglassSum(int arr_rows, int arr_columns, int** arr) {
-    
+    int sum, comp = 0;
+    for (int i = 1 ; i < (arr_rows - 1); i++) {
+        for (int j = 1; j < (arr_columns - 1); j++) {
+            sum = 0;
+            sum = arr[i][j] + arr[i+1][j+1] + arr[i-1][j-1] + arr[i-1][j] +
+                  arr[i+1][j] + arr[i+1][j-1] + arr[i-1][j+1];
+            if (sum > comp) {
+                comp = sum;
+            }
+        }
+    }
+    return comp;
 }
 
 int main()
