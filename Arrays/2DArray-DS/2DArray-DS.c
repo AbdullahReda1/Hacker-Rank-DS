@@ -13,7 +13,6 @@ char* readline();
 char* ltrim(char*);
 char* rtrim(char*);
 char** split_string(char*);
-
 int parse_int(char*);
 
 /*
@@ -25,29 +24,27 @@ int parse_int(char*);
 int hourglassSum(int arr_rows, int arr_columns, int** arr) {
     int sum;                      // Variable to store the sum of the current hourglass
     int max_sum = INT32_MIN;      // Initialize comp to the smallest possible integer value
-
     // Loop through each element in the 2D array that can be the center of an hourglass
     for (int i = 1; i < (arr_rows - 1); i++) {
         for (int j = 1; j < (arr_columns - 1); j++) {
-            sum = 0; // Reset sum for the new hourglass
-            
+            // Reset sum for the new hourglass
+            sum = 0;
             // Calculate the sum of the current hourglass
-            sum =   arr[i][j]      // Center of the hourglass
-                  + arr[i+1][j+1]  // Bottom right of the hourglass
-                  + arr[i-1][j-1]  // Top left of the hourglass
-                  + arr[i-1][j]    // Top center of the hourglass
-                  + arr[i+1][j]    // Bottom center of the hourglass
-                  + arr[i+1][j-1]  // Bottom left of the hourglass
-                  + arr[i-1][j+1]; // Top right of the hourglass
-            
+            sum =   arr[i+0][j+0]       // Center of the hourglass
+                +   arr[i+1][j+1]       // Bottom right of the hourglass
+                +   arr[i-1][j-1]       // Top left of the hourglass
+                +   arr[i-1][j+0]       // Top center of the hourglass
+                +   arr[i+1][j+0]       // Bottom center of the hourglass
+                +   arr[i+1][j-1]       // Bottom left of the hourglass
+                +   arr[i-1][j+1];      // Top right of the hourglass
             // Update comp if the current hourglass sum is greater than the previous maximum
             if (sum > max_sum) {
               max_sum = sum;
             }
         }
     }
-
-    return max_sum; // Return the maximum hourglass sum
+    // Return the maximum hourglass sum
+    return max_sum;
 }
 
 int main()
