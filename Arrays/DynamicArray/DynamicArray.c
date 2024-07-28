@@ -53,6 +53,13 @@ int parse_int(char*);
  *
  */
 int* dynamicArray(int n, int queries_rows, int queries_columns, int** queries, int* result_count) {
+    // Initialize variables
+    int** arr        = malloc(n * sizeof(int*));
+    int*  arr_size   = calloc(n, sizeof(int));
+    int lastAnswer   = 0;
+    int* results     = malloc(queries_rows * sizeof(int));
+    int result_index = 0;
+
     
 }
 
