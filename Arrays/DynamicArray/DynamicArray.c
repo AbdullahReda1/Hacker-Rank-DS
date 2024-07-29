@@ -59,8 +59,20 @@ int* dynamicArray(int n, int queries_rows, int queries_columns, int** queries, i
     int lastAnswer   = 0;
     int* results     = malloc(queries_rows * sizeof(int));
     int result_index = 0;
+    for (int i = 0; i < n; i++) { arr[i] = malloc(1 * sizeof(int)); }
 
-    
+    for (int i = 0; i < queries_rows; i++) {
+        int type = queries[i][0];
+        int x    = queries[i][1];
+        int y    = queries[i][2];
+        int idx  = ((x ^ lastAnswer) % n);
+
+        if (1 == type) {
+            
+        } else if (2 == type) {
+            
+        }
+    }
 }
 
 int main()
