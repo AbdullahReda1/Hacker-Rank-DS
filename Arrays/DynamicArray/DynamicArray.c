@@ -54,11 +54,11 @@ int parse_int(char*);
  */
 int* dynamicArray(int n, int queries_rows, int queries_columns, int** queries, int* result_count) {
     // Initialize variables
-    int** arr        = malloc(n * sizeof(int*));
-    int*  arr_size   = calloc(n, sizeof(int));
+    int** arr        = malloc(n * sizeof(int*));               // List of lists, where each inner list initially has one allocated space.
+    int*  arr_sizes  = calloc(n, sizeof(int));                 // Keeps track of the size of each inner list.
     int lastAnswer   = 0;
-    int* results     = malloc(queries_rows * sizeof(int));
-    int result_index = 0;
+    int* results     = malloc(queries_rows * sizeof(int));     // Array to store the results of type 2 queries.
+    int result_index = 0;                                      // Keeps track of the number of results stored.
     for (int i = 0; i < n; i++) { arr[i] = malloc(1 * sizeof(int)); }
 
     for (int i = 0; i < queries_rows; i++) {
@@ -68,11 +68,23 @@ int* dynamicArray(int n, int queries_rows, int queries_columns, int** queries, i
         int idx  = ((x ^ lastAnswer) % n);
 
         if (1 == type) {
-            
+            arr[idx] = realloc(arr[idx], (arr_sizes[idx] + 1) * sizeof(int));
+            arr[idx][arr_sizes[idx]] = y;
+            arr_sizes[idx]++;
         } else if (2 == type) {
-            
+            lastAnswer =  arr[idx][y % arr_sizes[idx]];
+            results[result_index++] = lastAnswer;
         }
     }
+
+    *result_count = result_index;
+    
+    // Free allocated memory for 'arr', 'arr_sizes', and 'queries'.
+    for (int i = 0; i < n; i++) { free(arr[i]); }
+    free(arr);
+    free(arr_sizes);
+
+    return results;
 }
 
 int main()
