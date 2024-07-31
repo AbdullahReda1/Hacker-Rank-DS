@@ -53,13 +53,11 @@ int parse_int(char*);
  *
  */
 int* rotateLeft(int d, int arr_count, int* arr, int* result_count) {
-    
+
 }
 
 int main()
 {
-    FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
-
     char** first_multiple_input = split_string(rtrim(readline()));
 
     int n = parse_int(*(first_multiple_input + 0));
@@ -80,16 +78,14 @@ int main()
     int* result = rotateLeft(d, n, arr, &result_count);
 
     for (int i = 0; i < result_count; i++) {
-        fprintf(fptr, "%d", *(result + i));
+        printf("%d", *(result + i));
 
         if (i != result_count - 1) {
-            fprintf(fptr, " ");
+            printf(" ");
         }
     }
 
-    fprintf(fptr, "\n");
-
-    fclose(fptr);
+    printf("\n");
 
     return 0;
 }
