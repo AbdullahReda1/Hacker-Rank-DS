@@ -52,13 +52,11 @@ int parse_int(char*);
  *
  */
 int* matchingStrings(int stringList_count, char** stringList, int queries_count, char** queries, int* result_count) {
-    
+
 }
 
 int main()
 {
-    FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
-
     int stringList_count = parse_int(ltrim(rtrim(readline())));
 
     char** stringList = malloc(stringList_count * sizeof(char*));
@@ -83,16 +81,14 @@ int main()
     int* res = matchingStrings(stringList_count, stringList, queries_count, queries, &res_count);
 
     for (int i = 0; i < res_count; i++) {
-        fprintf(fptr, "%d", *(res + i));
+        printf("%d", *(res + i));
 
         if (i != res_count - 1) {
-            fprintf(fptr, "\n");
+            printf("\n");
         }
     }
 
-    fprintf(fptr, "\n");
-
-    fclose(fptr);
+    printf("\n");
 
     return 0;
 }
