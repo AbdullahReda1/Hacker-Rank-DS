@@ -52,7 +52,17 @@ int parse_int(char*);
  *
  */
 int* matchingStrings(int stringList_count, char** stringList, int queries_count, char** queries, int* result_count) {
-
+    *result_count = queries_count;
+    int* results = malloc(queries_count * sizeof(int));
+    for (int i = 0; i < queries_count; i++) {
+        results[i] = 0;
+        for (int j = 0; j < stringList_count; j++) {
+            if (!strcmp(queries[i], stringList[j])) {
+                results[i]++;
+            }
+        }
+    }
+    return results;
 }
 
 int main()
