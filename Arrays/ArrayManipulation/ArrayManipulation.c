@@ -26,7 +26,53 @@ int parse_int(char*);
  */
 
 long arrayManipulation(int n, int queries_rows, int queries_columns, int** queries) {
+    /*
+        Difference Array Technique:
+        The Difference Array Technique optimizes the process by transforming 
+        range update operations into point update operations, thus reducing the time complexity.
+
+        Difference Array:
+            1. Difference Array Definition:
+                Define a difference array D of size n + 1, initialized to zero.
+            2. Range Update with Difference Array:
+                . For each query (a, b, k):
+                    . Increment D[a − 1] by 𝑘.
+                    . Decrement D[b] by 𝑘 (only if b < n).
+            Mathematically:
+                . D[a − 1] = D[a − 1] + k
+                . D[b] = D[b] − k (only if b < n)
+
+            3. Prefix Sum to Apply Updates:
+                To get the final array after all queries, compute the prefix sum of the difference array 𝐷.
+    */
+
+    // Initialize difference array with zeros
+    long* arr = malloc((n + 1) * sizeof(long));
+    memset(arr, 0, (n + 1) * sizeof(long));
+
+    // Apply each query using the difference array technique
+    for (int i = 0; i < queries_rows; i++) {
+        int a = queries[i][0];
+        int b = queries[i][1];
+        int k = queries[i][2];
+
+        arr[a - 1] += k;
+        if (b < n)
+            arr[b] -= k;
+    }
     
+    // Compute the prefix sum and find the maximum value
+    long max = 0;
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += arr[i];
+        if (sum > max)
+            max = sum;
+    }
+
+    free(arr);
+    
+    return max;
 }
 
 int main()
