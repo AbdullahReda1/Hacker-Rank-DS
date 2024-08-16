@@ -65,7 +65,11 @@ void free_singly_linked_list(SinglyLinkedListNode* node) {
  *
  */
 void printLinkedList(SinglyLinkedListNode* head) {
-    
+    SinglyLinkedListNode* current_node = head;
+    while (current_node) {
+        printf("%d\n", current_node->data);
+        current_node = current_node->next;
+    }
 }
 
 int main()
