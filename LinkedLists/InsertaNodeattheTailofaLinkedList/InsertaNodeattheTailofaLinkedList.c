@@ -64,19 +64,25 @@ void free_singly_linked_list(SinglyLinkedListNode* node) {
  *
  */
 SinglyLinkedListNode* insertNodeAtTail(SinglyLinkedListNode* head, int data) {
-    SinglyLinkedListNode* newnode = create_singly_linked_list_node(data);
+    // Step 1: Create a new node with the given data
+    SinglyLinkedListNode* newNode = create_singly_linked_list_node(data);
 
+    // Step 2: Check if the list is empty
     if (head == NULL) {
-        return newnode;
+        // If the list is empty, the new node is the head
+        return newNode;
     }
 
+    // Step 3: Traverse the list to find the last node
     SinglyLinkedListNode* current_node = head;
     while (current_node->next != NULL) {
         current_node = current_node->next;
     }
-    
-    current_node->next = newnode;
 
+    // Step 4: Update the last node's next pointer to the new node
+    current_node->next = newNode;
+
+    // Return the head of the list (unchanged)
     return head;
 }
 
