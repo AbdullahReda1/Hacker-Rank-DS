@@ -32,14 +32,14 @@ SinglyLinkedListNode* create_singly_linked_list_node(int node_data) {
     return node;
 }
 
-void print_singly_linked_list(SinglyLinkedListNode* node, char* sep, FILE* fptr) {
+void print_singly_linked_list(SinglyLinkedListNode* node, char* sep) {
     while (node) {
-        fprintf(fptr, "%d", node->data);
+        printf("%d", node->data);
 
         node = node->next;
 
         if (node) {
-            fprintf(fptr, "%s", sep);
+            printf("%s", sep);
         }
     }
 }
@@ -69,8 +69,6 @@ SinglyLinkedListNode* insertNodeAtHead(SinglyLinkedListNode* llist, int data) {
 
 int main()
 {
-    FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
-
     SinglyLinkedList* llist = malloc(sizeof(SinglyLinkedList));
     llist->head = NULL;
     llist->tail = NULL;
@@ -96,12 +94,10 @@ int main()
 
     char *sep = "\n";
 
-    print_singly_linked_list(llist->head, sep, fptr);
-    fprintf(fptr, "\n");
+    print_singly_linked_list(llist->head, sep);
+    printf("\n");
 
     free_singly_linked_list(llist->head);
-
-    fclose(fptr);
 
     return 0;
 }
